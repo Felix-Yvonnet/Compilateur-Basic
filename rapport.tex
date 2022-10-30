@@ -15,7 +15,7 @@ Ce projet compilation a été éreintant par certains aspects, douloureux souven
 \subsection{Difficultés rencontrées}
 Dans l'ensemble le projet était assez simple notemmant grâce à l'aide des merveilleuses librairies ocamlyacc et ocamllex qui faisaient tout pour nous et surtout fournissaient un exemple utile d'utilisation.\\
 J'ai malgré tout perdu pas mal de temps à essayer de faire sans pour au final renoncer sans raison particulière (sauf peut-être une légère fatigue provoquée par un code perpétuellement en état de non compilation)\\
-Je noterais aussi que la librairie x86\_64, en plus d'être incomplète (volonté de nuir des enseignants ? Cela reste à prouver$\dots$), m'a prit un certain nombre d'heures à comprendre.\\
+Je noterais aussi que la librairie x86\_64, en plus d'être incomplète (volonté de nuir des enseignants ? Cela reste à prouver...), m'a prit un certain nombre d'heures à comprendre.\\
 
 \subsection{Conclusion tirées}
 Maintenant je sais que faire un code à l'aveugle sans jamais faire de tests fonctionne mais prend le triple du temps nécessaire. Il faudra que je pense à plus regarder les résultats la prochaine fois...\\
@@ -58,7 +58,7 @@ C'est grosso modo ce que vous nous avez demandé avec un commande supplémentair
 \section{Ajouts}
 Parce que j'aime faire des insomnies j'ai ajouté la gestion de la division flotante, de la factorielle et des puissances au programme. Ils s'utilisent de manière naturelle avec le "/.", le "!" et le "\^{}" cf les exemple en input.exp. %Par contre la fatigue aura raison de moi avant que je finisse la puissance. NON J'AI R\'EUSSI !!
 \\
-Il n'y avait pas vraiment de choix à faire ici si ce n'est que j'ai négligé les puissances avec des nombres négatifs pour me restreindre à des opérations ne faisant intervenir que des entiers. Par convention j'ai pris $0! = 0 ^ 0 = 1$. On fait tout en force et ça passe (ou bien ça casse mais c'est que l'expression est fausse donc c'est bon).\\
+Il n'y avait pas vraiment de choix à faire ici si ce n'est que j'ai négligé les puissances avec des nombres négatifs pour me restreindre à des opérations ne faisant intervenir que des entiers. Par convention j'ai pris $0! = 0 ^ 0 = 1$. J'ai aussi mis la puissance en préférentiel, le modulo en second puis les opérations usuelles dans l'ordre des priorités. Pour le codage on fait tout en force et ça passe (ou bien ça casse mais c'est que l'expression est fausse donc c'est bon).\\
 
 \section{Conclusion}
 C'est peut-être un peu plus d'une dizaine de lignes mais ça compense les commentaires du code qui sont un peu plus avares.\\

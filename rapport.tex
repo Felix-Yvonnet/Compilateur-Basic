@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Rapport du projet compilation 1}
+\author{Félix Yvonnet}
+\date{October 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Présentation générale}
+Ce projet compilation a été éreintant par certains aspects, douloureux souvent mais je n'ai pas encore remis en cause ma vocation donc cela signifit sûrement que je suis prêt pour le vrai projet prog.
+
+\subsection{Difficultés rencontrées}
+Dans l'ensemble le projet était assez simple notemmant grâce à l'aide des merveilleuses librairies ocamlyacc et ocamllex qui faisaient tout pour nous et surtout fournissaient un exemple utile d'utilisation.\\
+J'ai malgré tout perdu pas mal de temps à essayer de faire sans pour au final renoncer sans raison particulière (sauf peut-être une légère fatigue provoquée par un code perpétuellement en état de non compilation)\\
+Je noterais aussi que la librairie x86\_64, en plus d'être incomplète (volonté de nuir des enseignants ? Cela reste à prouver$\dots$), m'a prit un certain nombre d'heures à comprendre.\\
+
+\subsection{Conclusion tirées}
+Maintenant je sais que faire un code à l'aveugle sans jamais faire de tests fonctionne mais prend le triple du temps nécessaire. Il faudra que je pense à plus regarder les résultats la prochaine fois...\\
+
+
+
+
+\newpage
+\section{Points clefs du programme}
+\subsection{calc.ml}
+C'est le corp du programme, il récupère le nom du fichier contenant les lignes de code, vérifie qu'il est bien en .exp et l'envoie au parseur et au lexer. \\
+Le résultat récupéré est un tuple comprenant les lignes de code du corps du code asm et la liste des variables (comprenant les floats).\\
+Le résultat est finalement mis en forme en factorisant les fonctions qui risquaient de se répéter à la fin (on aurait pu ajouter des booléens pour vérifier qu'on en a besoin... Une autre fois).\\
+On remarque une gestion des erreurs propre à chaque ligne ce qui permet de les traiter de manière fluide.\\
+
+\subsection{parser.mly/ lexer.mll}
+Bon là j'avoue j'ai surtout copié la doc ocaml...\\
+Il fallait surtout faire attention pour éviter les expressions de la forme - -2 qui, selon Yoan, "Ne [vont] pas du tout".
+
+\subsection{ass.ml}
+Le fichier qui traite l'ast et attribue à chaque token reçu l'instruction à écrire.\\
+La partie importante est la "stack" qui stock toutes les valeurs flotantes rencontrées avant de les envoyer à "calc.ml" afin qu'il les ajoute à la partie .data du programme assembleur.
+
+\subsection{asyntax.ml}
+C'était le nom que vous lui aviez donné lors du TD2 même si je l'ai utilisé plus comme fichier dépot pour les fonctions que je ne savais pas où placer. D'où un possible manque de cohérence des fonctions présentes.\\
+J'y ai placé la définition du type expr ainsi que la fonction de vérification du type des expressions.
+
+
+\subsection{x86\_64.ml(i)}
+La bibliothèque légèrement modifiée de sorte à permettre la gestion des floats. Rien à rajouter ici.
+
+\subsection{input.exp}
+Vous retrouverez ici quelques petits tests pour vérifier le bon fonctionnement de la fonction.
+J'ai créé un programme (Python, il ne faut pas abuser) pour choisir au hasard quelques opérations c'était marrant.\\
+
+\subsection{Makefile}
+C'est grosso modo ce que vous nous avez demandé avec un commande supplémentaire qui permet d'executer le programme compilé pour ne pas avoir besoin de recopier plein de fois ggc -no-pie ect...\\
+
+
+\section{Ajouts}
+Parce que j'aime faire des insomnies j'ai ajouté la gestion de la division flotante, de la factorielle et des puissances au programme. Ils s'utilisent de manière naturelle avec le "/.", le "!" et le "\^{}" cf les exemple en input.exp. %Par contre la fatigue aura raison de moi avant que je finisse la puissance. NON J'AI R\'EUSSI !!
+\\
+Il n'y avait pas vraiment de choix à faire ici si ce n'est que j'ai négligé les puissances avec des nombres négatifs pour me restreindre à des opérations ne faisant intervenir que des entiers. Par convention j'ai pris $0! = 0 ^ 0 = 1$. On fait tout en force et ça passe (ou bien ça casse mais c'est que l'expression est fausse donc c'est bon).\\
+
+\section{Conclusion}
+C'est peut-être un peu plus d'une dizaine de lignes mais ça compense les commentaires du code qui sont un peu plus avares.\\
+Bonnes vacances à vous et à bientôt.\\
+
+\section{Remerciements}
+Je remercie tout chaleureusement Corentin sans qui j'aurais jamais passé la partie sur les entiers, Emmanuel grâce à qui j'ai découvert le fonctionnement de la pile mais surtout Amélie, Louis et Yoan sans qui rien de tout ça n'aurait été fait. $\heartsuit$
+
+
+
+\end{document}
